@@ -45,7 +45,7 @@ and [Vite](https://vitejs.dev).
 ### Install and run
 
 ```bash
-git clone https://github.com/<your-username>/call-canvas.git
+git clone https://github.com/saksheesachan003/call-canvas.git
 cd call-canvas
 npm install
 npm run dev
@@ -166,3 +166,5 @@ Contributions are welcome.
 2. Make your changes and check them with `npm run dev`
 3. Make sure `npm run build` succeeds
 4. Commit, push, and open a pull request that describes what you changed and why
+
+Found a bug or have an idea? [Open an issue](https://github.com/saksheesachan003/call-canvas/issues).
