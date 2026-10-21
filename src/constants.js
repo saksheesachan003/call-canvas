@@ -26,3 +26,6 @@ export const edgeKindOf = (sourceHandle) => HANDLE_TO_KIND[sourceHandle] || "int
 
 // Prefix for the computed (non-persisted) edges that visualise groups
 export const GROUP_EDGE_PREFIX = "group:";
+
+// Window event a state node fires to open and focus its description in the side panel
+export const FOCUS_DESC_EVENT = "callcanvas:focus-desc";

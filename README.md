@@ -138,23 +138,36 @@ call-canvas/
 ├── vite.config.js                 dev server on port 3000
 ├── package.json
 └── src/
-    ├── main.jsx, App.jsx, index.css
+    ├── main.jsx                   entry point
+    ├── App.jsx
+    ├── index.css                  global styles
+    ├── constants.js               state types, edge kinds, colours
     ├── context/
     │   └── CallCanvasContext.jsx  flow state, autosave, import/export, actions
-    ├── components/CallCanvas/
-    │   ├── CallCanvas.jsx         provider wrapper
-    │   ├── CallCanvasInner.jsx    layout and canvas logic
-    │   ├── Toolbar.jsx            header (Fit / Import / Export / Clear)
-    │   ├── Sidebar.jsx            node palette and guide
-    │   ├── DescriptionPanel.jsx   descriptions list
-    │   ├── nodes.jsx              state nodes (WFM / FTU / OOC / HUP)
-    │   ├── EditableBotNode.jsx    Generic node
-    │   ├── CustomEdge.jsx         labelled edge and dashed group link
-    │   ├── constants.js           state types, edge kinds, colours
-    │   └── CallCanvasInner.css
+    ├── components/
+    │   ├── CallCanvas.jsx         wraps the app in its providers
+    │   ├── Canvas.jsx             page layout and all canvas interaction logic
+    │   ├── CallCanvas.css         styles for the whole app
+    │   ├── layout/
+    │   │   ├── Toolbar.jsx        header (Fit / Import / Export / Clear)
+    │   │   ├── Sidebar.jsx        node palette and "How to use" guide
+    │   │   └── DescriptionPanel.jsx  right-hand descriptions list
+    │   ├── nodes/
+    │   │   ├── GenericNode.jsx    editable bot-utterance node
+    │   │   ├── StateNode.jsx      WFM / FTU / OOC / HUP node
+    │   │   └── StatePill.jsx      coloured state label
+    │   └── edges/
+    │       ├── FlowEdge.jsx       labelled, colour-coded edge
+    │       ├── GroupEdge.jsx      dashed "attached" link
+    │       └── EdgeMarkers.jsx    arrow heads for each edge kind
     └── utils/
         └── logger.js
 ```
+
+**Where to start:**
+- To add a new state type, edit `STATE_TYPES` in `src/constants.js`.
+- To change edge kinds or colours, edit `EDGE_KINDS` in the same file.
+- How the flow is stored and changed lives in `src/context/CallCanvasContext.jsx`.
 
 ---
 

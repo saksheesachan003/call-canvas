@@ -1,8 +1,8 @@
 import React from "react";
 import { LuCircleHelp, LuGripVertical } from "react-icons/lu";
 import { useCallCanvasContext } from "../../context/CallCanvasContext";
-import { STATE_TYPES } from "./constants";
-import { StatePill } from "./nodes";
+import { STATE_TYPES } from "../../constants";
+import { StatePill } from "../nodes/StatePill";
 
 const guide = [
   {

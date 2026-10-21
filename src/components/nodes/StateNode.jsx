@@ -2,24 +2,14 @@ import { Handle, Position } from "@xyflow/react";
 import React, { useState } from "react";
 import { LuMessageSquareText, LuPlus, LuUnlink, LuX } from "react-icons/lu";
 import { findGenericOf, useCallCanvasContext } from "../../context/CallCanvasContext";
-import { getStateType } from "./constants";
-import "./CallCanvasInner.css";
+import { FOCUS_DESC_EVENT, getStateType } from "../../constants";
+import { StatePill } from "./StatePill";
 
-export const focusDescription = (descId) =>
-  window.dispatchEvent(new CustomEvent("callcanvas:focus-desc", { detail: descId }));
-
-// Pill used both on the canvas and in the palette
-export const StatePill = ({ state }) => {
-  const type = getStateType(state);
-  return (
-    <div className="state-pill" style={{ "--state-color": type?.color }}>
-      {state}
-    </div>
-  );
-};
+const focusDescription = (descId) =>
+  window.dispatchEvent(new CustomEvent(FOCUS_DESC_EVENT, { detail: descId }));
 
 // WFM / FTU / OOC / HUP node on the canvas
-export const Nodes = React.memo(({ id, data, selected }) => {
+export const StateNode = React.memo(({ id, data, selected }) => {
   const ctx = useCallCanvasContext();
   const [hovered, setHovered] = useState(false);
 

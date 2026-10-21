@@ -1,11 +1,11 @@
 import React, { memo, useState, useEffect, useRef } from "react";
-import { BaseEdge, EdgeLabelRenderer, getBezierPath, getStraightPath } from "@xyflow/react";
+import { BaseEdge, EdgeLabelRenderer, getBezierPath } from "@xyflow/react";
 import { LuX } from "react-icons/lu";
 import { useCallCanvasContext } from "../../context/CallCanvasContext";
-import { EDGE_KINDS, edgeKindOf } from "./constants";
+import { EDGE_KINDS, edgeKindOf } from "../../constants";
 
 // Labelled flow edge between two Generic nodes. Colour follows the source handle.
-function CustomEdge(props) {
+function FlowEdge(props) {
   const {
     id,
     sourceX,
@@ -115,18 +115,4 @@ function CustomEdge(props) {
   );
 }
 
-export default memo(CustomEdge);
-
-// Dashed line showing that a state node is attached to a Generic node
-export const GroupEdge = memo(({ sourceX, sourceY, targetX, targetY, selected }) => {
-  // straight line ending under the state pill (its handle sits on the pill's top edge)
-  const [edgePath] = getStraightPath({ sourceX, sourceY, targetX, targetY: targetY + 12 });
-  return (
-    <BaseEdge
-      path={edgePath}
-      interactionWidth={14}
-      className="group-edge"
-      style={{ strokeWidth: selected ? 2 : 1.25 }}
-    />
-  );
-});
+export default memo(FlowEdge);

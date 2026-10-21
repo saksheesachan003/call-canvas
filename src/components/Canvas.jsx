@@ -11,56 +11,32 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { LuMousePointerClick, LuX } from "react-icons/lu";
-import { findGenericOf, useCallCanvasContext } from "../../context/CallCanvasContext";
-import { Nodes } from "./nodes";
-import CustomEdge, { GroupEdge } from "./CustomEdge";
-import { EditableBotNode } from "./EditableBotNode";
-import { Sidebar } from "./Sidebar";
-import { Toolbar } from "./Toolbar";
-import { DescriptionPanel } from "./DescriptionPanel";
-import {
-  EDGE_KINDS,
-  GROUP_EDGE_PREFIX,
-  edgeKindOf,
-  getStateType,
-} from "./constants";
-import "./CallCanvasInner.css";
+import { findGenericOf, useCallCanvasContext } from "../context/CallCanvasContext";
+import { StateNode } from "./nodes/StateNode";
+import { GenericNode } from "./nodes/GenericNode";
+import FlowEdge from "./edges/FlowEdge";
+import { GroupEdge } from "./edges/GroupEdge";
+import { EdgeMarkers } from "./edges/EdgeMarkers";
+import { Sidebar } from "./layout/Sidebar";
+import { Toolbar } from "./layout/Toolbar";
+import { DescriptionPanel } from "./layout/DescriptionPanel";
+import { EDGE_KINDS, GROUP_EDGE_PREFIX, edgeKindOf, getStateType } from "../constants";
+import "./CallCanvas.css";
 
+// The type keys are stored in saved and exported flows, so they must not be renamed
 const nodeTypes = {
-  custom: Nodes,
-  botUtterance: EditableBotNode,
+  custom: StateNode,
+  botUtterance: GenericNode,
 };
 
 const edgeTypes = {
-  customEdge: CustomEdge,
+  customEdge: FlowEdge,
   groupLink: GroupEdge,
 };
 
 const isGroupEdge = (id) => id?.startsWith(GROUP_EDGE_PREFIX);
 
-// Arrow heads for each edge kind, referenced by CustomEdge as url(#callcanvas-arrow-<kind>)
-const EdgeMarkers = () => (
-  <svg className="edge-markers" aria-hidden>
-    <defs>
-      {Object.entries(EDGE_KINDS).map(([kind, { color }]) => (
-        <marker
-          key={kind}
-          id={`callcanvas-arrow-${kind}`}
-          viewBox="0 0 10 10"
-          refX="9"
-          refY="5"
-          markerWidth="7"
-          markerHeight="7"
-          orient="auto-start-reverse"
-        >
-          <path d="M0,0 L10,5 L0,10 z" fill={color} />
-        </marker>
-      ))}
-    </defs>
-  </svg>
-);
-
-export const CallCanvasInner = () => {
+export const Canvas = () => {
   const ctx = useCallCanvasContext();
   const { screenToFlowPosition, getNode } = useReactFlow();
   const dragRef = useRef(null);

@@ -2,8 +2,7 @@ import { Handle, Position, NodeResizer } from "@xyflow/react";
 import React, { useEffect, useRef, useState } from "react";
 import { LuLink, LuPencil, LuX } from "react-icons/lu";
 import { useCallCanvasContext } from "../../context/CallCanvasContext";
-import { EDGE_KINDS } from "./constants";
-import "./CallCanvasInner.css";
+import { EDGE_KINDS } from "../../constants";
 
 const BOTTOM_HANDLES = [
   { id: "bottom-a", kind: "positive", left: "25%", short: "+" },
@@ -12,7 +11,7 @@ const BOTTOM_HANDLES = [
 ];
 
 // Generic node: an editable bot utterance
-export const EditableBotNode = React.memo(({ data, id, selected }) => {
+export const GenericNode = React.memo(({ data, id, selected }) => {
   const ctx = useCallCanvasContext();
   const [isEditing, setIsEditing] = useState(false);
   const [label, setLabel] = useState(data.label || "");

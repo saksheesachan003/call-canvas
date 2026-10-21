@@ -1,4 +1,4 @@
-import { CallCanvas } from "./components/CallCanvas/CallCanvas";
+import { CallCanvas } from "./components/CallCanvas";
 
 const App = () => <CallCanvas />;
 

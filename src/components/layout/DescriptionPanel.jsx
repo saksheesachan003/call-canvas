@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useReactFlow } from "@xyflow/react";
 import { LuMessageSquare, LuPanelRightClose, LuTrash2 } from "react-icons/lu";
 import { findGenericOf, useCallCanvasContext } from "../../context/CallCanvasContext";
-import { getStateType } from "./constants";
+import { FOCUS_DESC_EVENT, getStateType } from "../../constants";
 
 const DescCard = ({ desc, displayId, genericId, onLocate, onDelete, onSave }) => {
   const [text, setText] = useState(desc.data.label || "");
@@ -55,8 +55,8 @@ export const DescriptionPanel = ({ open, onOpenChange }) => {
         el?.focus();
       }, 50);
     };
-    window.addEventListener("callcanvas:focus-desc", onFocus);
-    return () => window.removeEventListener("callcanvas:focus-desc", onFocus);
+    window.addEventListener(FOCUS_DESC_EVENT, onFocus);
+    return () => window.removeEventListener(FOCUS_DESC_EVENT, onFocus);
   }, [onOpenChange]);
 
   const locate = (stateId) => {
