@@ -1,0 +1,24 @@
+{
+  "name": "call-canvas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Visual drag-and-drop designer for voice-bot and IVR call flows",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.10.2",
+    "loglevel": "^1.9.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.6.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
